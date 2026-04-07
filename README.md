@@ -1,4 +1,7 @@
 # Wazuh SIEM – Modul 2
+| NRP        | Nama              |
+|:-----------:|:-----------------:|
+| 5025241021 | Kartika Nana Naulita           |
 
 ## Soal
 
