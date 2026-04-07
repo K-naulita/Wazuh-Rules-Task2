@@ -400,21 +400,30 @@ sudo /var/ossec/bin/agent_control -r -a
 ## 5. Dokumentasi penjelasan pengerjaan penugasan modul 2
 *Diagram Deployment*
 ```
-┌─────────────────────────────────────┐
-│        WAZUH SERVER (Manager)       |
-│               VPS Azure             |
-│        IP: 20.195.8.104             │
-│  ┌──────────┐ ┌────────┐ ┌───────┐  │
-│  │ Indexer  │ │Manager │ │Dashbrd│  │
-│  │ :9200    │ │ :1514  │ │ :443  │  │
-│  └──────────┘ └────────┘ └───────┘  │
-└──────────────────┬──────────────────┘
+┌───────────────────────────────────────┐
+│        WAZUH SERVER (Manager)         |
+│               VPS Azure               |
+│        IP: 20.195.8.104               │
+│  ┌──────────┐ ┌────────┐ ┌─────────┐  │
+│  │ Indexer  │ │Manager │ │Dashboard│  │
+│  │ :9200    │ │ :1514  │ │ :443    │  │
+│  └──────────┘ └────────┘ └─────────┘  │
+└──────────────────┬────────────────────┘
                    │ TCP 1514
           ┌────────┴────────┐
           │   WAZUH AGENT   │
           │   WSL (Local)   │
           │ 192.168.83.135  │
           └─────────────────┘
+                   ^
+                   │
+          ┌────────┴────────┐
+          │ ATTACKER/Client │ 
+          └─────────────────┘
+- Agent mengirim log ke manager
+- Manager menganalisis menggunakan rules
+- Dashboard menampilkan alert
+
 ```
 
 ## Referensi
